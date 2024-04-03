@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
-import supabase from '../supabase'; // Import Supabase client
+import supabase from '../components/config/supabaseClient'; // Import Supabase client
 import './Dashboard.css';
 
 const saltRounds = process.env.REACT_APP_PASS; // Number of salt rounds for bcrypt hashing

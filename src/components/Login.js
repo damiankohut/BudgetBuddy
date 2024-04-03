@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import supabase from '../supabase'; // Import Supabase client
+import supabase from './config/supabaseClient'; // Import Supabase client
 import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
 
 function Login() {
@@ -8,7 +8,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const saltRounds = process.env.REACT_APP_PASS; // Number of salt rounds for bcrypt hashing
+  const saltRounds = 10; // Number of salt rounds for bcrypt hashing
 
   const handleSubmit = async (e) => {
     e.preventDefault();
