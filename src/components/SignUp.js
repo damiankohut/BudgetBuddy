@@ -4,7 +4,8 @@ import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
 import supabase from '../components/config/supabaseClient'; // Import Supabase client
 import './Dashboard.css';
 
-const saltRounds = process.env.REACT_APP_PASS; // Number of salt rounds for bcrypt hashing
+const saltRounds = parseInt(process.env.REACT_APP_PASS);
+ // Number of salt rounds for bcrypt hashing
 const securityQuestionsList = [
   "What is your mother's maiden name?",
   "What city were you born in?",

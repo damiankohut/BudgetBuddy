@@ -8,7 +8,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const saltRounds = 10; // Number of salt rounds for bcrypt hashing
+  const saltRounds = parseInt(process.env.REACT_APP_PASS); // Number of salt rounds for bcrypt hashing
 
   const handleSubmit = async (e) => {
     e.preventDefault();
