@@ -5,7 +5,7 @@ import supabase from '../components/config/supabaseClient'; // Import Supabase c
 import './Dashboard.css';
 
 const saltRounds = parseInt(process.env.REACT_APP_PASS);
- // Number of salt rounds for bcrypt hashing
+// Number of salt rounds for bcrypt hashing
 const securityQuestionsList = [
   "What is your mother's maiden name?",
   "What city were you born in?",
@@ -25,7 +25,7 @@ const securityQuestionsList = [
 ];
 const SignUp = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState(''); // Changed from 'email' to 'username'
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [selectedQuestion, setSelectedQuestion] = useState('');
@@ -49,7 +49,7 @@ const SignUp = () => {
       // Insert user data including security questions into the 'users' table
       const { data, error } = await supabase
         .from('user')
-        .insert([{ email, password: hashedPassword, security_question: selectedQuestion, answer: hashedAnswer }]);
+        .insert([{ username, password: hashedPassword, security_question: selectedQuestion, answer: hashedAnswer }]); // Changed 'email' to 'username'
 
       if (error) {
         throw error;
@@ -66,12 +66,12 @@ const SignUp = () => {
     <div className="container">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="username">Username</label> {/* Changed 'email' to 'username' */}
         <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text" // Changed 'email' type to 'text'
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           required
         />
 

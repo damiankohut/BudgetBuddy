@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
 
 function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState(''); // Changed from email to username
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const saltRounds = parseInt(process.env.REACT_APP_PASS); // Number of salt rounds for bcrypt hashing
@@ -13,11 +13,11 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Query the users table for the provided email
+      // Query the users table for the provided username
       const { data, error } = await supabase
         .from('user')
         .select('*')
-        .eq('email', email)
+        .eq('username', username) // Changed from email to username
         .single();
 
       if (error) {
@@ -36,7 +36,7 @@ function Login() {
           // Redirect to the dashboard with user ID as state
           navigate('/dashboard', { state: { userId: data.id } });
         } else {
-          setError('Invalid email or password');
+          setError('Invalid username or password'); // Changed from email to username
         }
       } else {
         setError('User not found');
@@ -50,12 +50,12 @@ function Login() {
     <div className="container">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="username">Username</label> {/* Changed from email to username */}
         <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text" // Changed from email to text
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           required
         />
 
